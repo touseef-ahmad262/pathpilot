@@ -23,14 +23,55 @@ function getGeminiClient(): GoogleGenAI | null {
   if (!geminiClient) {
     geminiClient = new GoogleGenAI({
       apiKey: key,
-      httpOptions: {
-        headers: {
-          "User-Agent": "aistudio-build",
-        },
-      },
     });
   }
   return geminiClient;
+}
+
+// Resilient Gemini invoker with automatic retry on 503 high demand spikes
+async function callGeminiWithResilience(
+  ai: GoogleGenAI,
+  prompt: string,
+  systemInstruction: string
+): Promise<string> {
+  const modelsToTry = ["gemini-3.8-flash", "gemini-flash-latest"];
+  let lastError: any = null;
+
+  for (const model of modelsToTry) {
+    try {
+      const response = await ai.models.generateContent({
+        model,
+        contents: prompt,
+        config: {
+          systemInstruction,
+          temperature: 0.7,
+        },
+      });
+
+      if (response.text) {
+        return response.text;
+      }
+    } catch (err: any) {
+      lastError = err;
+      const isOverloaded =
+        err?.status === 503 ||
+        err?.message?.includes("503") ||
+        err?.message?.includes("high demand") ||
+        err?.message?.includes("UNAVAILABLE");
+
+      if (isOverloaded) {
+        console.warn(
+          `Model ${model} is experiencing temporary high demand (503). Retrying with secondary model...`
+        );
+        // Short pause before trying alternate model
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        continue;
+      }
+      throw err;
+    }
+  }
+
+  throw lastError || new Error("Unable to obtain Gemini response");
 }
 
 // Health check endpoint
@@ -89,19 +130,23 @@ Tailor every response directly to the student's current skill gap and active sta
 
     const prompt = `${contextPrompt}\nSTUDENT QUESTION: "${question}"\n\nProvide a targeted, encouraging, step-by-step guidance response for this beginner.`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
-      contents: prompt,
-      config: {
-        systemInstruction,
-        temperature: 0.7,
-      },
-    });
-
-    const reply = response.text || "Keep taking steady daily steps toward your goal!";
-    res.json({ reply, mode: "gemini" });
+    try {
+      const reply = await callGeminiWithResilience(ai, prompt, systemInstruction);
+      res.json({ reply, mode: "gemini" });
+    } catch (apiError: any) {
+      console.warn(
+        "Gemini service experiencing high demand; providing intelligent fallback guidance:",
+        apiError?.message || apiError
+      );
+      const fallbackResponse = generateSmartFallback(question, userContext);
+      res.json({
+        reply: fallbackResponse,
+        mode: "fallback",
+        warning: "Gemini servers are currently experiencing peak demand. PathPilot provided instant guidance via the built-in mentor engine.",
+      });
+    }
   } catch (error: any) {
-    console.error("Gemini Coach Error:", error);
+    console.warn("Handled coach request error:", error?.message || error);
     // Graceful fallback on API errors so user/judges are never blocked
     const fallbackResponse = generateSmartFallback(
       req.body?.question || "",

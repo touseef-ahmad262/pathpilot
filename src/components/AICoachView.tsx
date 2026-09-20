@@ -138,7 +138,7 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
       setMessages((prev) => [...prev, aiMessage]);
       if (data.mode) setServerMode(data.mode);
     } catch (err) {
-      console.error('AI Coach Error:', err);
+      console.warn('AI Coach server unreachable, activating offline mentor:', err);
       // Client-side fallback if server fetch fails
       const fallbackReply = `🎯 **PathPilot Offline Mentor:**\n\nFocus on your active stage **${activeStage?.title}**. Work specifically on closing your primary skill gap (**${analysis.primaryGap?.skill}**) by finishing today's roadmap task and committing code to GitHub!`;
       setMessages((prev) => [
