@@ -1,0 +1,7 @@
+{
+  "name": "PathPilot",
+  "description": "Interactive learning and career roadmap generator with skill gap analysis, practical missions, and an AI coach for beginners.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
