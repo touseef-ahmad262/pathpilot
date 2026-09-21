@@ -284,28 +284,30 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Floating Toast Notification */}
         {toastNotification && (
-          <div className="fixed bottom-6 right-6 z-50 animate-bounce-short">
-            <div className="p-4 rounded-2xl bg-slate-900/95 border border-cyan-500/40 shadow-2xl shadow-cyan-950/40 flex items-center gap-3.5 backdrop-blur-md">
-              <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                {toastNotification.iconType === 'badge' ? (
-                  <Award className="h-5 w-5 text-amber-400" />
-                ) : toastNotification.iconType === 'level' ? (
-                  <Sparkles className="h-5 w-5 text-indigo-400" />
-                ) : (
-                  <Zap className="h-5 w-5 text-cyan-400" />
-                )}
-              </div>
-              <div>
-                <div className="text-xs font-bold text-white">
-                  {toastNotification.title}
+          <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 left-4 sm:left-auto max-w-sm z-50 animate-bounce-short">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/95 border border-cyan-500/40 shadow-2xl shadow-cyan-950/40 flex items-center justify-between gap-3 backdrop-blur-md">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
+                  {toastNotification.iconType === 'badge' ? (
+                    <Award className="h-4 w-4 sm:h-5 sm:w-5 text-amber-400" />
+                  ) : toastNotification.iconType === 'level' ? (
+                    <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-400" />
+                  ) : (
+                    <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400" />
+                  )}
                 </div>
-                <div className="text-[11px] text-slate-400">
-                  {toastNotification.description}
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-white truncate">
+                    {toastNotification.title}
+                  </div>
+                  <div className="text-[11px] text-slate-400 truncate">
+                    {toastNotification.description}
+                  </div>
                 </div>
               </div>
               <button
                 onClick={() => setToastNotification(null)}
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white ml-2"
+                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white shrink-0 ml-1"
               >
                 <X className="h-3.5 w-3.5" />
               </button>

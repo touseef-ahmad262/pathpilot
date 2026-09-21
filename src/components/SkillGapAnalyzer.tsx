@@ -59,10 +59,10 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 shadow-xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 shadow-xl">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs uppercase tracking-wider font-semibold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-800/40">
                 Signature Feature
               </span>
@@ -70,31 +70,31 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
                 Target: {profile?.goal || 'Web Developer'}
               </span>
             </div>
-            <h1 className="text-2xl font-bold text-white mt-1 font-['Outfit']">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-1.5 font-['Outfit']">
               Skill Gap Analyzer
             </h1>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
               PathPilot compares your current experience and verified project completions against the industry-standard baseline for {profile?.goal || 'your target role'}.
             </p>
           </div>
 
           {/* Readiness Gauge */}
-          <div className="flex items-center gap-4 bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-            <div className="text-right">
+          <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 bg-slate-950/80 p-3.5 sm:p-4 rounded-xl border border-slate-800 w-full sm:w-auto shrink-0">
+            <div className="text-left sm:text-right">
               <div className="text-xs text-slate-400">Target Readiness</div>
-              <div className="text-2xl font-bold text-cyan-400 font-mono">
+              <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">
                 {overallReadiness}%
               </div>
               <div className="text-[11px] text-slate-400">Calculated from Roadmap</div>
             </div>
-            <div className="w-14 h-14 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center">
-              <TrendingUp className="h-6 w-6 text-cyan-400" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
+              <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-400" />
             </div>
           </div>
         </div>
 
         {/* Insight Summary Callout */}
-        <div className="mt-5 p-4 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+        <div className="mt-5 p-3.5 sm:p-4 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
           <Sparkles className="h-5 w-5 text-cyan-400 shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             {summaryInsight}
@@ -104,14 +104,14 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
 
       {/* Primary Skill Gap Spotlight */}
       {primaryGap && (
-        <div className="p-6 rounded-2xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-slate-900 border border-amber-500/30 shadow-lg shadow-amber-950/10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3.5">
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 shrink-0">
-                <AlertTriangle className="h-6 w-6" />
+        <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-slate-900 border border-amber-500/30 shadow-lg shadow-amber-950/10">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="flex items-start gap-3 sm:gap-3.5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 shrink-0">
+                <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6" />
               </div>
               <div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                     Primary Current Skill Gap
                   </span>
@@ -119,7 +119,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
                     {primaryGap.gapPercentage}% Gap Remaining
                   </span>
                 </div>
-                <h2 className="text-xl font-bold text-white mt-0.5">
+                <h2 className="text-lg sm:text-xl font-bold text-white mt-0.5">
                   {primaryGap.skill} ({primaryGap.currentLevel}% of {primaryGap.requiredLevel}%)
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed max-w-2xl">
@@ -129,7 +129,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0 w-full sm:w-auto">
               {onOpenCoachWithPrompt && (
                 <button
                   type="button"
@@ -138,7 +138,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
                       `Why is "${primaryGap.skill}" my biggest skill gap for becoming a ${profile?.goal || 'developer'}, and how should I practice it?`
                     )
                   }
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors text-center"
                 >
                   Ask AI Coach
                 </button>
@@ -157,17 +157,17 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
       )}
 
       {/* Detailed Skill Matrix (Percentages breakdown as requested in prompt) */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5">
+      <div className="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 sm:space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
-            <h2 className="text-lg font-bold text-white font-['Outfit']">
+            <h2 className="text-base sm:text-lg font-bold text-white font-['Outfit']">
               Skill Proficiency Matrix
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-400 mt-0.5">
               Live skill progression updated as you complete tasks, challenges, and practical missions.
             </p>
           </div>
-          <div className="flex items-center gap-3 text-xs text-slate-400">
+          <div className="flex items-center gap-3 text-xs text-slate-400 flex-wrap">
             <div className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-cyan-400" />
               <span>Current Level</span>
@@ -180,7 +180,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
         </div>
 
         {/* Skill Bars List */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {skills.map((skillItem) => {
             const catInfo = categoryColor[skillItem.category] || categoryColor.core;
             const isFinished = skillItem.currentLevel >= skillItem.requiredLevel;
@@ -188,10 +188,10 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
             return (
               <div
                 key={skillItem.skill}
-                className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-slate-700 transition-colors"
+                className="p-3.5 sm:p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-slate-700 transition-colors"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-semibold text-white text-sm">
                       {skillItem.skill}
                     </span>
@@ -212,7 +212,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
                     )}
                   </div>
 
-                  <div className="flex items-center gap-3 text-xs font-mono">
+                  <div className="flex items-center gap-2 sm:gap-3 text-xs font-mono flex-wrap">
                     <span className="text-white font-bold">{skillItem.currentLevel}%</span>
                     <span className="text-slate-500">/ {skillItem.requiredLevel}% Target</span>
                     <span className="text-slate-400">
@@ -244,7 +244,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
                 </div>
 
                 {/* Practical Recommendation */}
-                <p className="text-xs text-slate-400 mt-2">
+                <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                   {skillItem.recommendation}
                 </p>
               </div>
@@ -254,15 +254,15 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
       </div>
 
       {/* What to Work on Next Card */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-cyan-950/30 border border-cyan-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-cyan-950/30 border border-cyan-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
             <Zap className="h-3.5 w-3.5" /> Recommended Next Action
           </span>
-          <h3 className="text-base font-bold text-white">
+          <h3 className="text-sm sm:text-base font-bold text-white">
             {nextRecommendedAction.title}
           </h3>
-          <p className="text-xs text-slate-300 max-w-xl">
+          <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
             {nextRecommendedAction.description}
           </p>
         </div>
@@ -276,7 +276,7 @@ export const SkillGapAnalyzer: React.FC<SkillGapAnalyzerProps> = ({
               onNavigateToTab('roadmap');
             }
           }}
-          className="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 transition-all flex items-center justify-center gap-2 shrink-0 shadow-md shadow-cyan-500/20 active:scale-95"
+          className="w-full md:w-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 transition-all flex items-center justify-center gap-2 shrink-0 shadow-md shadow-cyan-500/20 active:scale-95"
         >
           <span>Take Action Now</span>
           <ArrowRight className="h-3.5 w-3.5" />

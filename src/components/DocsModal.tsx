@@ -12,24 +12,24 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-4 sm:my-8">
         {/* Header */}
-        <div className="p-6 border-b border-slate-800 flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-md">
+        <div className="p-4 sm:p-6 border-b border-slate-800 flex items-start justify-between gap-2">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-md shrink-0">
               <Compass className="h-5 w-5" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-white font-['Outfit']">
-                  PathPilot — Devpost Hackathon Dossier
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base sm:text-lg font-bold text-white font-['Outfit'] truncate">
+                  PathPilot — Devpost Dossier
                 </h3>
-                <span className="text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-2 py-0.5 rounded-full shrink-0">
                   FirstCommit Entry
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 mt-0.5 truncate">
                 Created by Touseef Ahmad (Age 19) •{' '}
                 <a
                   href="https://github.com/touseef-ahmad262"
@@ -45,17 +45,17 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors shrink-0"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-800 bg-slate-950/60 px-6 gap-2 text-xs">
+        <div className="flex border-b border-slate-800 bg-slate-950/60 px-4 sm:px-6 gap-1 sm:gap-2 text-xs overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveTab('submission')}
-            className={`py-3 px-3 font-semibold border-b-2 transition-colors ${
+            className={`py-2.5 sm:py-3 px-2 sm:px-3 font-semibold border-b-2 transition-colors whitespace-nowrap shrink-0 ${
               activeTab === 'submission'
                 ? 'border-cyan-400 text-white'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -65,7 +65,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={() => setActiveTab('rubric')}
-            className={`py-3 px-3 font-semibold border-b-2 transition-colors ${
+            className={`py-2.5 sm:py-3 px-2 sm:px-3 font-semibold border-b-2 transition-colors whitespace-nowrap shrink-0 ${
               activeTab === 'rubric'
                 ? 'border-cyan-400 text-white'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -75,7 +75,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={() => setActiveTab('journey')}
-            className={`py-3 px-3 font-semibold border-b-2 transition-colors ${
+            className={`py-2.5 sm:py-3 px-2 sm:px-3 font-semibold border-b-2 transition-colors whitespace-nowrap shrink-0 ${
               activeTab === 'journey'
                 ? 'border-cyan-400 text-white'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
@@ -86,7 +86,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 max-h-[62vh] overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <div className="p-4 sm:p-6 max-h-[62vh] overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
           {activeTab === 'submission' && (
             <div className="space-y-4">
               <div>
@@ -199,13 +199,13 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
-          <span className="text-xs text-slate-500">
+        <div className="p-3 sm:p-4 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+          <span className="text-xs text-slate-500 text-center sm:text-left">
             PathPilot • Built for FirstCommit Hackathon
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition-colors"
+            className="w-full sm:w-auto px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition-colors"
           >
             Close
           </button>

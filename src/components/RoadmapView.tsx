@@ -77,10 +77,10 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Header Card */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 shadow-xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 shadow-xl">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs uppercase tracking-wider font-semibold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-800/40">
                 Interactive Learning Path
               </span>
@@ -88,26 +88,26 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                 {stages.length} Structured Phases
               </span>
             </div>
-            <h1 className="text-2xl font-bold text-white mt-1 font-['Outfit']">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-1.5 font-['Outfit']">
               Personalized Career Roadmap
             </h1>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
               Follow this step-by-step sequence of foundational concepts, practical mini-projects, and verification challenges. Click any task to mark it complete and earn XP.
             </p>
           </div>
 
           {/* Progress Overview Pill */}
-          <div className="flex items-center gap-4 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-            <div className="text-right">
+          <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 bg-slate-950/80 p-3 sm:p-3.5 rounded-xl border border-slate-800 w-full sm:w-auto">
+            <div className="text-left sm:text-right">
               <div className="text-xs text-slate-400">Overall Progress</div>
-              <div className="text-xl font-bold text-cyan-400 font-mono">
+              <div className="text-lg sm:text-xl font-bold text-cyan-400 font-mono">
                 {overallPercent}%
               </div>
               <div className="text-[11px] text-slate-500">
                 {completedTasks.length}/{totalTasks.length} tasks
               </div>
             </div>
-            <div className="w-12 h-12 rounded-full border-4 border-slate-800 relative flex items-center justify-center">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-4 border-slate-800 relative flex items-center justify-center shrink-0">
               <div
                 className="absolute inset-0 rounded-full border-4 border-cyan-400"
                 style={{
@@ -122,11 +122,11 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
         </div>
 
         {/* Filter Controls & Expand / Collapse */}
-        <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800">
+        <div className="mt-5 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-1 sm:gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800 overflow-x-auto no-scrollbar">
             <button
               onClick={() => setFilter('all')}
-              className={`px-3 py-1 rounded-md transition-colors ${
+              className={`px-2.5 sm:px-3 py-1 rounded-md transition-colors whitespace-nowrap ${
                 filter === 'all'
                   ? 'bg-cyan-500 text-slate-950 font-bold'
                   : 'text-slate-400 hover:text-white'
@@ -136,7 +136,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
             </button>
             <button
               onClick={() => setFilter('in-progress')}
-              className={`px-3 py-1 rounded-md transition-colors ${
+              className={`px-2.5 sm:px-3 py-1 rounded-md transition-colors whitespace-nowrap ${
                 filter === 'in-progress'
                   ? 'bg-cyan-500 text-slate-950 font-bold'
                   : 'text-slate-400 hover:text-white'
@@ -146,7 +146,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
             </button>
             <button
               onClick={() => setFilter('completed')}
-              className={`px-3 py-1 rounded-md transition-colors ${
+              className={`px-2.5 sm:px-3 py-1 rounded-md transition-colors whitespace-nowrap ${
                 filter === 'completed'
                   ? 'bg-cyan-500 text-slate-950 font-bold'
                   : 'text-slate-400 hover:text-white'
@@ -156,7 +156,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2 shrink-0">
             <button
               onClick={expandAll}
               className="text-slate-400 hover:text-slate-200 px-2 py-1 rounded hover:bg-slate-800 transition-colors"
@@ -198,26 +198,26 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
               <button
                 type="button"
                 onClick={() => toggleExpand(stage.id)}
-                className="w-full text-left p-5 flex items-center justify-between gap-4 focus:outline-none focus-visible:bg-slate-800/40"
+                className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-3 sm:gap-4 focus:outline-none focus-visible:bg-slate-800/40"
               >
-                <div className="flex items-start sm:items-center gap-4 min-w-0">
+                <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
                   {/* Phase Number Badge */}
                   <div
-                    className={`h-11 w-11 rounded-xl flex items-center justify-center shrink-0 font-mono font-bold text-sm transition-colors ${
+                    className={`h-9 w-9 sm:h-11 sm:w-11 rounded-xl flex items-center justify-center shrink-0 font-mono font-bold text-xs sm:text-sm transition-colors ${
                       stageFinished
                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                         : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
                     }`}
                   >
                     {stageFinished ? (
-                      <Check className="h-5 w-5 stroke-[2.5]" />
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 stroke-[2.5]" />
                     ) : (
                       `0${stage.phaseNumber}`
                     )}
                   </div>
 
                   <div className="min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                       <span className="text-xs font-semibold text-slate-400">
                         {stage.phaseTitle}
                       </span>
@@ -228,19 +228,19 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                         </span>
                       )}
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-white truncate mt-0.5">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white truncate mt-0.5">
                       {stage.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 shrink-0">
+                <div className="flex items-center gap-3 sm:gap-4 shrink-0">
                   {/* Mini Progress Indicator */}
                   <div className="hidden sm:block text-right">
                     <div className="text-xs font-mono font-semibold text-slate-300">
                       {completedInStage}/{stageTasks.length} Done
                     </div>
-                    <div className="w-24 h-1.5 bg-slate-800 rounded-full mt-1 overflow-hidden">
+                    <div className="w-20 sm:w-24 h-1.5 bg-slate-800 rounded-full mt-1 overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${
                           stageFinished ? 'bg-emerald-400' : 'bg-cyan-400'
@@ -260,10 +260,10 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
 
               {/* Stage Expanded Details */}
               {isExpanded && (
-                <div className="px-5 pb-6 pt-2 border-t border-slate-800/80 space-y-6">
+                <div className="px-4 sm:px-5 pb-5 sm:pb-6 pt-2 border-t border-slate-800/80 space-y-5 sm:space-y-6">
                   {/* Stage Description & Skills Chips */}
-                  <div className="space-y-3">
-                    <p className="text-sm text-slate-300">{stage.description}</p>
+                  <div className="space-y-2.5">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{stage.description}</p>
                     <div className="flex flex-wrap gap-1.5 items-center">
                       <span className="text-xs font-medium text-slate-400 mr-1">Skills covered:</span>
                       {stage.skills.map((sk) => (
@@ -291,13 +291,13 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                         return (
                           <div
                             key={task.id}
-                            className={`p-3.5 rounded-xl border transition-all flex items-start justify-between gap-3 ${
+                            className={`p-3 sm:p-3.5 rounded-xl border transition-all flex items-start justify-between gap-2.5 sm:gap-3 ${
                               task.completed
                                 ? 'bg-slate-950/40 border-slate-800/80 opacity-80'
                                 : 'bg-slate-950 border-slate-800 hover:border-slate-700'
                             }`}
                           >
-                            <div className="flex items-start gap-3 min-w-0">
+                            <div className="flex items-start gap-2.5 sm:gap-3 min-w-0">
                               <button
                                 type="button"
                                 onClick={() => onToggleTask(stage.id, task.id)}
@@ -314,7 +314,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                               <div className="min-w-0">
                                 <div className="flex items-center gap-2 flex-wrap">
                                   <span
-                                    className={`text-sm font-semibold ${
+                                    className={`text-xs sm:text-sm font-semibold ${
                                       task.completed ? 'line-through text-slate-400' : 'text-white'
                                     }`}
                                   >
@@ -327,8 +327,8 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
 
                                 {task.resourceHint && (
                                   <div className="flex items-center gap-1 text-[11px] text-cyan-400/90 mt-1.5 font-medium">
-                                    <ExternalLink className="h-3 w-3" />
-                                    <span>Resource: {task.resourceHint}</span>
+                                    <ExternalLink className="h-3 w-3 shrink-0" />
+                                    <span className="truncate">Resource: {task.resourceHint}</span>
                                   </div>
                                 )}
                               </div>
@@ -349,15 +349,15 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                   </div>
 
                   {/* Stage Practical Challenge & Mini-Project Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 pt-2">
                     {/* Practical Challenge */}
                     <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
-                            <Zap className="h-3.5 w-3.5" /> Stage Practical Challenge
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs font-semibold text-amber-400 flex items-center gap-1.5 min-w-0 truncate">
+                            <Zap className="h-3.5 w-3.5 shrink-0" /> Stage Practical Challenge
                           </span>
-                          <span className="text-xs font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                          <span className="text-xs font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 shrink-0">
                             +{stage.practicalChallenge.xpReward} XP
                           </span>
                         </div>
@@ -365,7 +365,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                         <h5 className="text-sm font-bold text-white mt-2">
                           {stage.practicalChallenge.title}
                         </h5>
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                           {stage.practicalChallenge.prompt}
                         </p>
 
@@ -375,18 +375,18 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                           </span>
                           {stage.practicalChallenge.checklist.map((item, i) => (
                             <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 shrink-0" />
                               <span>{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                      <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
                         <button
                           type="button"
                           onClick={() => onToggleChallenge(stage.id)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                             stage.practicalChallenge.completed
                               ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                               : 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30'
@@ -408,7 +408,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                                 `Give me a beginner practice challenge for stage ${stage.phaseNumber}: ${stage.title}`
                               )
                             }
-                            className="text-xs text-cyan-400 hover:text-cyan-300 underline underline-offset-2"
+                            className="text-xs text-cyan-400 hover:text-cyan-300 underline underline-offset-2 text-center sm:text-right"
                           >
                             Ask AI Coach
                           </button>
@@ -419,11 +419,11 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                     {/* Stage Mini-Project */}
                     <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-semibold text-indigo-400 flex items-center gap-1.5">
-                            <FolderGit2 className="h-3.5 w-3.5" /> Stage Mini-Project
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs font-semibold text-indigo-400 flex items-center gap-1.5 min-w-0 truncate">
+                            <FolderGit2 className="h-3.5 w-3.5 shrink-0" /> Stage Mini-Project
                           </span>
-                          <span className="text-xs font-bold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+                          <span className="text-xs font-bold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20 shrink-0">
                             +{stage.miniProject.xpReward} XP
                           </span>
                         </div>
@@ -431,7 +431,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                         <h5 className="text-sm font-bold text-white mt-2">
                           {stage.miniProject.title}
                         </h5>
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                           {stage.miniProject.objective}
                         </p>
 
@@ -441,18 +441,18 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                           </span>
                           {stage.miniProject.deliverables.map((item, i) => (
                             <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+                              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 shrink-0" />
                               <span>{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                      <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
                         <button
                           type="button"
                           onClick={() => onToggleMiniProject(stage.id)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                             stage.miniProject.completed
                               ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                               : 'bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
@@ -466,7 +466,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                           </span>
                         </button>
 
-                        <span className="text-[11px] text-slate-400">
+                        <span className="text-[11px] text-slate-400 text-center sm:text-right">
                           Builds GitHub Trail
                         </span>
                       </div>

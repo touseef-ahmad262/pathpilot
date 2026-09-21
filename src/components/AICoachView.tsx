@@ -159,10 +159,10 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-slate-800 shadow-xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-950 border border-slate-800 shadow-xl">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs uppercase tracking-wider font-semibold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-800/40">
                 Context-Aware Mentor
               </span>
@@ -170,26 +170,26 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
                 Powered by Gemini 3.8 Flash
               </span>
             </div>
-            <h1 className="text-2xl font-bold text-white mt-1 font-['Outfit'] flex items-center gap-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-1.5 font-['Outfit'] flex items-center gap-2">
               <span>PathPilot AI Coach</span>
               <Sparkles className="h-5 w-5 text-indigo-400" />
             </h1>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
               An intelligent mentor grounded in your selected goal, skill gap percentages, active roadmap stage, and weekly study schedule.
             </p>
           </div>
 
           {/* Context Synchronization Badge */}
-          <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1">
+          <div className="bg-slate-950/80 p-3 sm:p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5 w-full sm:w-auto shrink-0">
             <div className="flex items-center justify-between gap-3 text-slate-400">
               <span>Current Focus:</span>
-              <span className="font-semibold text-white truncate max-w-[140px]">
+              <span className="font-semibold text-white truncate max-w-[160px]">
                 {profile?.goal || 'Web Developer'}
               </span>
             </div>
             <div className="flex items-center justify-between gap-3 text-slate-400">
               <span>Active Gap:</span>
-              <span className="font-semibold text-amber-400 truncate max-w-[140px]">
+              <span className="font-semibold text-amber-400 truncate max-w-[160px]">
                 {analysis.primaryGap?.skill || 'Fundamentals'}
               </span>
             </div>
@@ -219,10 +219,10 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
                 key={q}
                 type="button"
                 onClick={() => handleSendMessage(q)}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5 text-left"
+                className="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5 text-left"
               >
                 <Lightbulb className="h-3 w-3 text-cyan-400 shrink-0" />
-                <span>{q}</span>
+                <span className="line-clamp-1">{q}</span>
               </button>
             ))}
           </div>
@@ -230,30 +230,30 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
       </div>
 
       {/* Chat Messages Container */}
-      <div className="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden flex flex-col h-[520px] shadow-lg">
+      <div className="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden flex flex-col h-[460px] sm:h-[520px] shadow-lg">
         {/* Messages Scroll Area */}
-        <div className="flex-1 p-5 overflow-y-auto space-y-4">
+        <div className="flex-1 p-3.5 sm:p-5 overflow-y-auto space-y-3 sm:space-y-4">
           {messages.map((msg) => {
             const isAssistant = msg.role === 'assistant';
             return (
               <div
                 key={msg.id}
-                className={`flex items-start gap-3 ${isAssistant ? 'justify-start' : 'justify-end'}`}
+                className={`flex items-start gap-2.5 sm:gap-3 ${isAssistant ? 'justify-start' : 'justify-end'}`}
               >
                 {isAssistant && (
-                  <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-sm mt-0.5">
-                    <Bot className="h-4 w-4" />
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-sm mt-0.5">
+                    <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </div>
                 )}
 
                 <div
-                  className={`max-w-xl rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
+                  className={`max-w-[88%] sm:max-w-xl rounded-2xl p-3 sm:p-4 text-xs sm:text-sm leading-relaxed ${
                     isAssistant
                       ? 'bg-slate-950 border border-slate-800 text-slate-200 shadow-sm'
                       : 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium shadow-md'
                   }`}
                 >
-                  <div className="whitespace-pre-wrap font-sans">{msg.content}</div>
+                  <div className="whitespace-pre-wrap font-sans break-words">{msg.content}</div>
 
                   <div className="mt-2 pt-1.5 border-t border-slate-800/60 flex items-center justify-between text-[10px] text-slate-400">
                     <span>{msg.timestamp}</span>
@@ -266,8 +266,8 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
                 </div>
 
                 {!isAssistant && (
-                  <div className="h-8 w-8 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 shrink-0 shadow-sm mt-0.5">
-                    <User className="h-4 w-4" />
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 shrink-0 shadow-sm mt-0.5">
+                    <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </div>
                 )}
               </div>
@@ -275,11 +275,11 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
           })}
 
           {loading && (
-            <div className="flex items-start gap-3">
-              <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shrink-0 animate-pulse">
-                <Bot className="h-4 w-4" />
+            <div className="flex items-start gap-2.5 sm:gap-3">
+              <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shrink-0 animate-pulse">
+                <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </div>
-              <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 text-xs text-slate-400 flex items-center gap-2">
+              <div className="bg-slate-950 border border-slate-800 rounded-2xl p-3 sm:p-4 text-xs text-slate-400 flex items-center gap-2">
                 <RefreshCw className="h-3.5 w-3.5 animate-spin text-cyan-400" />
                 <span>Coach is thinking with your roadmap context...</span>
               </div>
@@ -295,7 +295,7 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
             e.preventDefault();
             handleSendMessage();
           }}
-          className="p-4 bg-slate-950 border-t border-slate-800 flex items-center gap-2"
+          className="p-3 sm:p-4 bg-slate-950 border-t border-slate-800 flex items-center gap-2"
         >
           <input
             type="text"
@@ -305,12 +305,12 @@ export const AICoachView: React.FC<AICoachViewProps> = ({
               profile?.goal || 'Web Developer'
             }?")`}
             disabled={loading}
-            className="flex-1 px-4 py-2.5 text-xs sm:text-sm bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 disabled:opacity-60"
+            className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 disabled:opacity-60 min-w-0"
           />
           <button
             type="submit"
             disabled={!inputQuestion.trim() || loading}
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 disabled:opacity-40 disabled:hover:bg-cyan-400 text-slate-950 transition-all flex items-center gap-1.5 shadow-md shadow-cyan-500/20 shrink-0"
+            className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 disabled:opacity-40 disabled:hover:bg-cyan-400 text-slate-950 transition-all flex items-center gap-1.5 shadow-md shadow-cyan-500/20 shrink-0"
           >
             <span>Ask</span>
             <Send className="h-3.5 w-3.5" />

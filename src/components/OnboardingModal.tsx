@@ -91,38 +91,39 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl shadow-cyan-950/40 overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl shadow-cyan-950/40 overflow-hidden my-4 sm:my-8 max-h-[90vh] flex flex-col">
         {/* Decorative Top Accent Bar */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 shrink-0" />
 
         {/* Header & Step Indicator */}
-        <div className="px-6 pt-6 pb-4 border-b border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+        <div className="px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
               <Compass className="h-4 w-4 text-cyan-400" />
             </div>
-            <div>
-              <h2 className="text-lg font-bold text-white tracking-tight font-['Outfit']">
+            <div className="min-w-0">
+              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight font-['Outfit'] truncate">
                 PathPilot Onboarding
               </h2>
-              <p className="text-xs text-slate-400">Step {step} of 4: Personalize Your Journey</p>
+              <p className="text-xs text-slate-400 truncate">Step {step} of 4: Personalize Your Journey</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={onTryDemo}
-              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1"
+              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2 sm:px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1"
             >
-              <Sparkles className="h-3 w-3" />
-              <span>Try Demo Instead</span>
+              <Sparkles className="h-3 w-3 shrink-0" />
+              <span className="hidden sm:inline">Try Demo Instead</span>
+              <span className="sm:hidden">Demo</span>
             </button>
           </div>
         </div>
 
         {/* Progress Dots */}
-        <div className="px-6 pt-3 flex gap-2">
+        <div className="px-4 sm:px-6 pt-3 flex gap-2 shrink-0">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
@@ -134,21 +135,21 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         </div>
 
         {/* Body Content by Step */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1">
           {/* STEP 1: What do you want to achieve? */}
           {step === 1 && (
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-bold text-white font-['Outfit']">
+                <h3 className="text-lg sm:text-xl font-bold text-white font-['Outfit']">
                   What do you want to achieve?
                 </h3>
-                <p className="text-sm text-slate-400 mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
                   Choose a target career path or define a custom tech goal. PathPilot will construct an interactive roadmap around your destination.
                 </p>
               </div>
 
               {/* Goal Presets Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
                 {GOAL_PRESETS.map((preset) => {
                   const isSelected = selectedGoalId === preset.id;
                   return (
@@ -161,7 +162,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                         setTimeframe(preset.defaultTimeframe);
                         setTargetMonths(preset.defaultMonths);
                       }}
-                      className={`text-left p-3.5 rounded-xl border transition-all flex flex-col justify-between ${
+                      className={`text-left p-3 sm:p-3.5 rounded-xl border transition-all flex flex-col justify-between ${
                         isSelected
                           ? 'border-cyan-400 bg-cyan-950/20 ring-1 ring-cyan-400 shadow-md shadow-cyan-500/10'
                           : 'border-slate-800 bg-slate-800/40 hover:border-slate-700 hover:bg-slate-800/70'
@@ -177,7 +178,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                       </div>
                       <div className="mt-3">
                         <h4 className="font-semibold text-white text-sm">{preset.title}</h4>
-                        <p className="text-xs text-slate-400 mt-1 line-clamp-2">
+                        <p className="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                           {preset.shortDescription}
                         </p>
                       </div>
@@ -196,7 +197,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Alex"
-                  className="w-full px-3.5 py-2 text-sm bg-slate-950 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+                  className="w-full px-3.5 py-2 text-xs sm:text-sm bg-slate-950 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
                 />
               </div>
             </div>
@@ -204,17 +205,17 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 2: Current Experience Level */}
           {step === 2 && (
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               <div>
-                <h3 className="text-xl font-bold text-white font-['Outfit']">
+                <h3 className="text-lg sm:text-xl font-bold text-white font-['Outfit']">
                   What is your current experience?
                 </h3>
-                <p className="text-sm text-slate-400 mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
                   Be completely honest! PathPilot adapts the beginning stages so you never feel lost or overwhelmed.
                 </p>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5 sm:space-y-3">
                 {[
                   {
                     level: 'complete-beginner' as ExperienceLevel,
@@ -241,23 +242,23 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                       key={item.level}
                       type="button"
                       onClick={() => setExperience(item.level)}
-                      className={`w-full text-left p-4 rounded-xl border transition-all flex items-start justify-between ${
+                      className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start justify-between gap-3 ${
                         isSelected
                           ? 'border-cyan-400 bg-cyan-950/20 ring-1 ring-cyan-400 shadow-sm'
                           : 'border-slate-800 bg-slate-800/40 hover:border-slate-700 hover:bg-slate-800/70'
                       }`}
                     >
-                      <div>
-                        <div className="flex items-center gap-2">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <h4 className="font-semibold text-white text-sm">{item.title}</h4>
                           <span className="text-[10px] font-medium bg-slate-800 text-cyan-300 px-2 py-0.5 rounded border border-slate-700">
                             {item.tag}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-400 mt-1">{item.desc}</p>
+                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">{item.desc}</p>
                       </div>
                       <div
-                        className={`h-5 w-5 rounded-full border flex items-center justify-center ${
+                        className={`h-5 w-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${
                           isSelected ? 'border-cyan-400 bg-cyan-400 text-slate-950' : 'border-slate-700'
                         }`}
                       >
@@ -274,10 +275,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           {step === 3 && (
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-bold text-white font-['Outfit']">
+                <h3 className="text-lg sm:text-xl font-bold text-white font-['Outfit']">
                   Which skills do you already have?
                 </h3>
-                <p className="text-sm text-slate-400 mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
                   Select any skills you are already familiar with. If none, simply skip ahead! Our Skill Gap Analyzer will calculate your baseline.
                 </p>
               </div>
@@ -301,7 +302,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                             : 'bg-slate-800/60 border-slate-700/80 text-slate-300 hover:border-slate-600'
                         }`}
                       >
-                        {isSelected && <Check className="h-3 w-3 text-cyan-400" />}
+                        {isSelected && <Check className="h-3 w-3 text-cyan-400 shrink-0" />}
                         <span>{skill}</span>
                       </button>
                     );
@@ -320,11 +321,11 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     value={customSkillInput}
                     onChange={(e) => setCustomSkillInput(e.target.value)}
                     placeholder="e.g. Python, Figma, Notion"
-                    className="flex-1 px-3 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                    className="flex-1 px-3 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 min-w-0"
                   />
                   <button
                     type="submit"
-                    className="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors"
+                    className="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors shrink-0"
                   >
                     Add
                   </button>
@@ -342,24 +343,24 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 4: Hours & Timeframe */}
           {step === 4 && (
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               <div>
-                <h3 className="text-xl font-bold text-white font-['Outfit']">
+                <h3 className="text-lg sm:text-xl font-bold text-white font-['Outfit']">
                   Commitment & Target Timeframe
                 </h3>
-                <p className="text-sm text-slate-400 mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
                   How much time can you realistically invest? PathPilot balances your stage deadlines accordingly.
                 </p>
               </div>
 
               {/* Hours per week */}
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-                <div className="flex items-center justify-between">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-cyan-400" />
-                    <span className="text-sm font-semibold text-white">Hours available per week</span>
+                    <Clock className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span className="text-xs sm:text-sm font-semibold text-white">Hours available per week</span>
                   </div>
-                  <span className="text-base font-bold text-cyan-400">{hoursPerWeek} hrs / week</span>
+                  <span className="text-sm sm:text-base font-bold text-cyan-400 shrink-0">{hoursPerWeek} hrs / week</span>
                 </div>
 
                 <input
@@ -382,11 +383,11 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
               {/* Target timeframe */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-indigo-400" />
-                  <span className="text-sm font-semibold text-white">Desired Timeframe</span>
+                  <Calendar className="h-4 w-4 text-indigo-400 shrink-0" />
+                  <span className="text-xs sm:text-sm font-semibold text-white">Desired Timeframe</span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                   {[
                     { label: '3 Months', months: 3, subtitle: 'Fast Track (~15 hrs/wk)' },
                     { label: '6 Months', months: 6, subtitle: 'Balanced Pace (Recommended)' },
@@ -413,7 +414,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
               </div>
 
               {/* Summary Pill */}
-              <div className="p-3.5 rounded-xl bg-gradient-to-r from-cyan-950/40 to-indigo-950/40 border border-cyan-500/20 flex items-center justify-between text-xs">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-gradient-to-r from-cyan-950/40 to-indigo-950/40 border border-cyan-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs">
                 <div>
                   <span className="text-slate-400">Destination:</span>{' '}
                   <span className="font-bold text-white">{currentPreset.title}</span>
@@ -428,12 +429,12 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         </div>
 
         {/* Footer Navigation Buttons */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between gap-2 shrink-0">
           {step > 1 ? (
             <button
               type="button"
               onClick={() => setStep(step - 1)}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors flex items-center gap-1.5"
+              className="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors flex items-center gap-1.5"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Back
             </button>
@@ -445,7 +446,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
             <button
               type="button"
               onClick={() => setStep(step + 1)}
-              className="px-5 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center gap-1.5"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center gap-1.5"
             >
               Next Step <ArrowRight className="h-3.5 w-3.5" />
             </button>
@@ -453,10 +454,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
             <button
               type="button"
               onClick={handleFinish}
-              className="px-6 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2"
             >
-              <Zap className="h-4 w-4 fill-slate-950" />
-              Generate My Roadmap
+              <Zap className="h-4 w-4 fill-slate-950 shrink-0" />
+              <span>Generate My Roadmap</span>
             </button>
           )}
         </div>

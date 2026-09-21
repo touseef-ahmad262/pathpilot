@@ -56,12 +56,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Hero Welcome Card */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 shadow-xl relative overflow-hidden">
+      <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-cyan-500/10 to-transparent pointer-events-none" />
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 relative z-10">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs uppercase tracking-wider font-semibold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-800/40">
                 Personal Command Center
               </span>
@@ -69,10 +69,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 Created: {new Date(profile?.createdAt || Date.now()).toLocaleDateString()}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mt-1 font-['Outfit']">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-1.5 font-['Outfit']">
               Welcome back, {profile?.name || 'Aspiring Developer'}!
             </h1>
-            <p className="text-sm text-slate-300 mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl leading-relaxed">
               Target Goal:{' '}
               <span className="font-bold text-white underline decoration-cyan-400 underline-offset-2">
                 {profile?.goal || 'Web Developer'}
@@ -81,17 +81,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2.5 shrink-0">
+          <div className="flex flex-col sm:flex-row gap-2.5 w-full sm:w-auto shrink-0">
             <button
               onClick={() => onNavigateToTab('roadmap')}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center gap-1.5 active:scale-95"
+              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center gap-1.5 active:scale-95 w-full sm:w-auto"
             >
               <Map className="h-3.5 w-3.5" />
               <span>Resume Roadmap</span>
             </button>
             <button
               onClick={() => onNavigateToTab('coach')}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors flex items-center justify-center gap-1.5 w-full sm:w-auto"
             >
               <Bot className="h-3.5 w-3.5 text-cyan-400" />
               <span>Ask AI Coach</span>
@@ -101,9 +101,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* 4 Core Stat Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Overall Progress */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-400">Roadmap Progress</span>
             <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
@@ -125,7 +125,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Level & XP */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-400">Level & Total XP</span>
             <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -150,7 +150,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Learning Streak */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-400">Learning Streak</span>
             <div className="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
@@ -180,7 +180,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Completed Missions */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-400">Missions Completed</span>
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -209,17 +209,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* Two Column Layout: Current Stage & Next Action */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Left Column (2 Cols): Active Stage & Next Action */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {/* Next Recommended Action Banner */}
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 border border-cyan-500/30 shadow-lg shadow-cyan-950/10">
+          <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 border border-cyan-500/30 shadow-lg shadow-cyan-950/10">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1">
+              <div className="space-y-1 min-w-0">
                 <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                   <Zap className="h-3.5 w-3.5 fill-cyan-400" /> Next Recommended Action
                 </span>
-                <h3 className="text-lg font-bold text-white">
+                <h3 className="text-base sm:text-lg font-bold text-white">
                   {analysis.nextRecommendedAction.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
@@ -236,7 +236,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     onNavigateToTab('roadmap');
                   }
                 }}
-                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center gap-1.5 shrink-0"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center gap-1.5 shrink-0 w-full sm:w-auto"
               >
                 <span>Take Action</span>
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -246,26 +246,26 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
           {/* Current Active Roadmap Stage */}
           {activeStage && (
-            <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
+            <div className="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <div className="flex items-center justify-between gap-2">
+                <div className="min-w-0">
                   <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
                     Current Focus Phase
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-0.5">
+                  <h3 className="text-base sm:text-lg font-bold text-white mt-0.5 truncate">
                     {activeStage.phaseTitle}: {activeStage.title}
                   </h3>
                 </div>
                 <button
                   onClick={() => onNavigateToTab('roadmap')}
-                  className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold"
+                  className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold shrink-0"
                 >
                   <span>Open Stage</span>
                   <ArrowRight className="h-3 w-3" />
                 </button>
               </div>
 
-              <p className="text-xs text-slate-300">{activeStage.description}</p>
+              <p className="text-xs sm:text-sm text-slate-300">{activeStage.description}</p>
 
               {/* Stage Tasks Snapshot */}
               <div className="space-y-2 pt-1">
@@ -278,7 +278,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         : 'bg-slate-950 border-slate-800 text-slate-200'
                     }`}
                   >
-                    <div className="flex items-center gap-2.5 truncate">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       {task.completed ? (
                         <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
                       ) : (
@@ -299,16 +299,16 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Right Column (1 Col): Skill Gaps Snapshot & Achievements */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Skill Gaps Snapshot */}
-          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-            <div className="flex items-center justify-between">
+          <div className="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div className="flex items-center justify-between gap-2">
               <h3 className="text-base font-bold text-white font-['Outfit']">
                 Skill Gaps Overview
               </h3>
               <button
                 onClick={() => onNavigateToTab('analyzer')}
-                className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold"
+                className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold shrink-0"
               >
                 View Analyzer
               </button>
@@ -317,11 +317,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="space-y-3">
               {analysis.skills.slice(0, 4).map((skill) => (
                 <div key={skill.skill} className="space-y-1">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate-200 truncate max-w-[140px]">
+                  <div className="flex items-center justify-between text-xs gap-2">
+                    <span className="font-medium text-slate-200 truncate">
                       {skill.skill}
                     </span>
-                    <span className="font-mono text-slate-400">
+                    <span className="font-mono text-slate-400 shrink-0">
                       {skill.currentLevel}% / {skill.requiredLevel}%
                     </span>
                   </div>
@@ -350,17 +350,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Badges & Achievements */}
-          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <Award className="h-4 w-4 text-amber-400" />
-                <h3 className="text-base font-bold text-white font-['Outfit']">
+          <div className="p-4 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <Award className="h-4 w-4 text-amber-400 shrink-0" />
+                <h3 className="text-base font-bold text-white font-['Outfit'] truncate">
                   Badges ({unlockedBadges.length}/{gamification.badges.length})
                 </h3>
               </div>
               <button
                 onClick={onOpenBadges}
-                className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold"
+                className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold shrink-0"
               >
                 All Badges
               </button>
